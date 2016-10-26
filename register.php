@@ -1,7 +1,7 @@
 <?php
 
 // PARAMETRI DA MODIFICARE
-$WEBHOOK_URL = 'https://Kertry1bot.herokuapp.com/execute.php';
+$WEBHOOK_URL = 'https://kertry1.herokuapp.com/execute.php';
 $BOT_TOKEN = '292400786:AAEChnhpLUtYhOuFn2b4FOPkWbMpqiUqFpA';
 
 // NON APPORTARE MODIFICHE NEL CODICE SEGUENTE
