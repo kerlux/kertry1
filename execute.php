@@ -10,8 +10,8 @@ if(!$update)
 $message = isset($update['message']) ? $update['message'] : "";
 $chatId = isset($message['chat']['id']) ? $message['chat']['id'] : "";
 $text = isset($message['text']) ? $message['text'] : "";
-
-if($text contains "pizza")
+$text = strtolower($text);
+if($text == "pizza")
 {
 $text = "ecco a te";
 }
