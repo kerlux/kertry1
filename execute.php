@@ -10,7 +10,8 @@ if(!$update)
 $message = isset($update['message']) ? $update['message'] : "";
 $chatId = isset($message['chat']['id']) ? $message['chat']['id'] : "";
 $text = isset($message['text']) ? $message['text'] : "";
-
+if($text contains "pizz")
+{
 $botUrl = "https://api.telegram.org/bot" . BOT_TOKEN . "/sendPhoto";
 $postFields = array('chat_id' => $chatId, 'photo' => new CURLFile(realpath("pizze.png")), 'caption' => $text);
 $ch = curl_init(); 
@@ -20,5 +21,6 @@ curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 curl_setopt($ch, CURLOPT_POSTFIELDS, $postFields);
 // read curl response
 $output = curl_exec($ch);
+}
 
 
