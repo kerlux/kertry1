@@ -10,20 +10,16 @@ if(!$update)
 $message = isset($update['message']) ? $update['message'] : "";
 $chatId = isset($message['chat']['id']) ? $message['chat']['id'] : "";
 $text = isset($message['text']) ? $message['text'] : "";
-$firstname = isset($message['chat']['first_name']) ? $message['chat']['first_name'] : "";
 
-$text = trim($text);
-$text = strtolower($text);
-$response = '';
-if(strpos($text, "/start") === 0 || $text=="ciao")
+if($text contains "pizza")
 {
-	$response = "Ciao $firstname, benvenuto!";
-  $parameters = array('chat_id' => $chatId, "text" => $response);
-  $parameters["method"] = "sendMessage";
-  echo json_encode($parameters);
+$text = "ecco a te";
 }
-elseif($text cointains "pizz")
+else
 {
+$text = "mmm";
+}
+
   $botUrl = "https://api.telegram.org/bot" . BOT_TOKEN . "/sendPhoto";
   $postFields = array('chat_id' => $chatId, 'photo' => new CURLFile(realpath("pizze.png")), 'caption' => $text);
   $ch = curl_init(); 
@@ -33,7 +29,7 @@ elseif($text cointains "pizz")
   curl_setopt($ch, CURLOPT_POSTFIELDS, $postFields);
   // read curl response
   $output = curl_exec($ch);
-}
+
 
 
 
