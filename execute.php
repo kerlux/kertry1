@@ -11,32 +11,14 @@ $message = isset($update['message']) ? $update['message'] : "";
 $chatId = isset($message['chat']['id']) ? $message['chat']['id'] : "";
 $text = isset($message['text']) ? $message['text'] : "";
 
-// change image name and path
+$botUrl = "https://api.telegram.org/bot" . BOT_TOKEN . "/sendPhoto";
+$postFields = array('chat_id' => $chatId, 'photo' => new CURLFile(realpath("pizze.png")), 'caption' => $text);
+$ch = curl_init(); 
+curl_setopt($ch, CURLOPT_HTTPHEADER, array("Content-Type:multipart/form-data"));
+curl_setopt($ch, CURLOPT_URL, $botUrl); 
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1); 
+curl_setopt($ch, CURLOPT_POSTFIELDS, $postFields);
+// read curl response
+$output = curl_exec($ch);
 
-if(strpos($text, "/start") === 0 || $text=="ciao")
-{
-	$response = "Ciao $firstname, benvenuto!";
-  $parameters = array('chat_id' => $chatId, "text" => $response);
-  $parameters["method"] = "sendMessage";
-  echo json_encode($parameters);
-}
-elseif($text=="pizze" || $text=="pizza")
-{
-  $botUrl = "https://api.telegram.org/bot" . BOT_TOKEN . "/sendPhoto";
-	$postFields = array('chat_id' => $chatId, 'photo' => new CURLFile(realpath("pizze.png")), 'caption' => $text);
-  $ch = curl_init(); 
-  curl_setopt($ch, CURLOPT_HTTPHEADER, array("Content-Type:multipart/form-data"));
-  curl_setopt($ch, CURLOPT_URL, $botUrl); 
-  curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1); 
-  curl_setopt($ch, CURLOPT_POSTFIELDS, $postFields);
-  // read curl response
-  $output = curl_exec($ch);
-}
-else
-{
-	$response = "Comando non valido!";
-  $parameters = array('chat_id' => $chatId, "text" => $response);
-  $parameters["method"] = "sendMessage";
-  echo json_encode($parameters);
-}
 
