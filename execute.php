@@ -22,5 +22,13 @@ $text = strtolower($text);
   // read curl response
   $output = curl_exec($ch);
 
+  $postFields = array('chat_id' => $chatId, 'photo' => new CURLFile(realpath("pizze.png")), 'caption' => $text);
+  $ch = curl_init(); 
+  curl_setopt($ch, CURLOPT_HTTPHEADER, array("Content-Type:multipart/form-data"));
+  curl_setopt($ch, CURLOPT_URL, $botUrl); 
+  curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1); 
+  curl_setopt($ch, CURLOPT_POSTFIELDS, $postFields);
+  // read curl response
+  $output = curl_exec($ch);
 
 
