@@ -12,12 +12,8 @@ $chatId = isset($message['chat']['id']) ? $message['chat']['id'] : "";
 $text = isset($message['text']) ? $message['text'] : "";
 $text = strtolower($text);
 
-if($text!="pizza")
+if($text=="pizza")
 {
-	$response = "risposta 1";
-}
-else{
-
   $botUrl = "https://api.telegram.org/bot" . BOT_TOKEN . "/sendPhoto";
   $postFields = array('chat_id' => $chatId, 'photo' => new CURLFile(realpath("1.jpg")), 'caption' => $text);
   $ch = curl_init(); 
@@ -45,4 +41,9 @@ else{
   curl_setopt($ch, CURLOPT_POSTFIELDS, $postFields);
   // read curl response
   $output = curl_exec($ch);
+	
+}
+else{
+
+  $response = "risposta 1";
 }
