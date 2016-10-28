@@ -12,7 +12,7 @@ $chatId = isset($message['chat']['id']) ? $message['chat']['id'] : "";
 $text = isset($message['text']) ? $message['text'] : "";
 $text = strtolower($text);
 
-if($text contains "pizz")
+if(strpos($text, 'pizz') !== false)
 {
   $botUrl = "https://api.telegram.org/bot" . BOT_TOKEN . "/sendPhoto";
   $postFields = array('chat_id' => $chatId, 'photo' => new CURLFile(realpath("1.jpg")), 'caption' => $text);
@@ -45,5 +45,8 @@ if($text contains "pizz")
 }
 else{
 
-  $response = "risposta 1";
+  $response = "Comando non valido!";
+  $parameters = array('chat_id' => $chatId, "text" => $response);
+  $parameters["method"] = "sendMessage";
+  echo json_encode($parameters);
 }
