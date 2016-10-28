@@ -13,7 +13,7 @@ $text = isset($message['text']) ? $message['text'] : "";
 $text = strtolower($text);
 
   $botUrl = "https://api.telegram.org/bot" . BOT_TOKEN . "/sendPhoto";
-  $postFields = array('chat_id' => $chatId, 'photo' => new CURLFile(realpath("pizze.png")), 'caption' => $text);
+  $postFields = array('chat_id' => $chatId, 'photo' => new CURLFile(realpath("1.jpg")), 'caption' => $text);
   $ch = curl_init(); 
   curl_setopt($ch, CURLOPT_HTTPHEADER, array("Content-Type:multipart/form-data"));
   curl_setopt($ch, CURLOPT_URL, $botUrl); 
@@ -22,7 +22,7 @@ $text = strtolower($text);
   // read curl response
   $output = curl_exec($ch);
 
-  $postFields = array('chat_id' => $chatId, 'photo' => new CURLFile(realpath("pizze.png")), 'caption' => $text);
+  $postFields = array('chat_id' => $chatId, 'photo' => new CURLFile(realpath("2.jpg")), 'caption' => $text);
   $ch = curl_init(); 
   curl_setopt($ch, CURLOPT_HTTPHEADER, array("Content-Type:multipart/form-data"));
   curl_setopt($ch, CURLOPT_URL, $botUrl); 
@@ -31,4 +31,11 @@ $text = strtolower($text);
   // read curl response
   $output = curl_exec($ch);
 
-
+  $postFields = array('chat_id' => $chatId, 'photo' => new CURLFile(realpath("3.jpg")), 'caption' => $text);
+  $ch = curl_init(); 
+  curl_setopt($ch, CURLOPT_HTTPHEADER, array("Content-Type:multipart/form-data"));
+  curl_setopt($ch, CURLOPT_URL, $botUrl); 
+  curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1); 
+  curl_setopt($ch, CURLOPT_POSTFIELDS, $postFields);
+  // read curl response
+  $output = curl_exec($ch);
